@@ -1,17 +1,14 @@
 #include <stdio.h>
 #include "opencv2/opencv.hpp"
-#include "highgui/highgui.hpp"
 #include <iostream>
 
+using namespace std;
 using namespace cv;
 
-void mouse_callback(int event, int x, int y, int flag, void *param) {
-      while (true) {
-        if(event == EVENT_MOUSEMOVE) {
-          printf("Mouse moved.\n");
-          std::cout << "(" << x << ","  << y << ")" << std::endl;
-        }
-      }
+void MouseMove(int event, int x, int y, int flags, void* userdata) {
+  if(event==EVENT_MOUSEMOVE) {
+      std::cout << "Mouse Position: (" << x << ","  << y << ")" << std::endl;
+  }
 }
 
 int main(int argc, char** argv ) {
@@ -29,9 +26,8 @@ int main(int argc, char** argv ) {
         return -1;
     }
 
-
     namedWindow("Display Image", WINDOW_AUTOSIZE);
-    setMouseCallback("Display Image", mouse_callback);
+    setMouseCallback("Display Image", MouseMove, NULL);
     imshow("Display Image", image);
 
     waitKey(0);
