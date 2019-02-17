@@ -5,9 +5,13 @@
 using namespace std;
 using namespace cv;
 
+Mat image;
+
 void MouseMove(int event, int x, int y, int flags, void* userdata) {
   if(event==EVENT_MOUSEMOVE) {
       std::cout << "Mouse Position: (" << x << ","  << y << ")" << std::endl;
+
+      std::cout << image.at<cv::Vec3b>(y,x) << std::endl;
   }
 }
 
@@ -18,7 +22,6 @@ int main(int argc, char** argv ) {
         return -1;
     }
 
-    Mat image;
     image = imread(argv[1], 1);
 
     if (!image.data) {
@@ -27,7 +30,7 @@ int main(int argc, char** argv ) {
     }
 
     namedWindow("Display Image", WINDOW_AUTOSIZE);
-    setMouseCallback("Display Image", MouseMove, NULL);
+    setMouseCallback("Display Image", MouseMove, &image);
     imshow("Display Image", image);
 
     waitKey(0);
