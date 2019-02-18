@@ -15,7 +15,7 @@ void MouseMove(int event, int x, int y, int flags, void* userdata) {
       std::stringstream ss;
       cv::Vec3b pixelColor = image.at<cv::Vec3b>(y,x);
       cv::Vec3b pixelColor2(pixelColor[2], pixelColor[1], pixelColor[0]);
-      ss << "(x,y): (" << x << "," << y << ") (BGR): " << pixelColor2;
+      ss << "(x,y): (" << x << "," << y << ") (RGB): " << pixelColor2;
       text = ss.str();
       circle(image2, Point(x,y), 20, Scalar(53,53,238),5);
       putText(image2, text, Point(8, 20), FONT_HERSHEY_SIMPLEX, .45, Scalar(0,255,255), 1);
